@@ -13,7 +13,7 @@ def login(request):
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect('boards:index')
+            return redirect('home:home')
     else:
         form = AuthenticationForm()
         
@@ -22,7 +22,7 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    return redirect('boards:index')
+    return redirect('home:home')
 
 def signup(request):
     if request.method == 'POST':

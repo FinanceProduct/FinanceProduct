@@ -22,6 +22,6 @@ urlpatterns = [
     path('boards/', include('boards.urls')),
     path('accounts/', include('accounts.urls')),
     path('bank/', include('bank.urls')),
-    # path('exchange/', include('exchange.urls')),
-    # path('products/', include('products.urls')),
+    path('exchange/', include('exchange.urls')),
+    path('products/', include('products.urls')),
 ]

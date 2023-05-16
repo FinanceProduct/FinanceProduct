@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>환율 계산</h1>
+
+<form method="GET" action="{% url 'exchange:calculate' %}">
+    <label for="amount">액수:</label>
+    <input type="number" id="amount" name="amount" min="0" required>
+    <br>
+    <label for="from_currency">원래 통화:</label>
+    <select id="from_currency" name="from_currency" required>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="JPY(100)">JPY</option>
+        <option value="KRW">KRW</option>
+        <!-- 다른 통화 코드도 추가하세요 -->
+    </select>
+    <br>
+    <label for="to_currency">변환할 통화:</label>
+    <select id="to_currency" name="to_currency" required>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="JPY(100)">JPY</option>
+        <option value="KRW">KRW</option>
+        <!-- 다른 통화 코드도 추가하세요 -->
+    </select>
+    <br>
+    <button type="submit">환율 계산</button>
+</form>
+
+{% if result_message %}
+    <div id="result">{{ result_message }}</div>
+{% endif %}
+
+{% endblock content %}

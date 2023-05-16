@@ -1,21 +1,68 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
+<style>
+  .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: right;
+    padding-right: 100px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;    
+  }
 
+</style>
+<h1>금융 상품 비교 애플리케이션<br>sosonono입니다.</h1>
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="../../source/bank.jpg" class="d-block w-100" alt="...">
+  <div class="carousel-inner carousel-parent">
+    <div class="carousel-item active" data-bs-interval="3000">
+      <a href="{% url 'boards:index' %}">
+      <img src={% static 'products.jpg' %} class="d-block w-100" style="height: 500px; object-fit: cover;" alt="...">
+      </a>
+      <div class="carousel-caption d-none d-md-block">
+        <h3>금융 상품</h3>
+        <h5>자신에게 맞는 최상의 금융 상품을 알아보세요.</h5>
+      </div>
     </div>
-    <div class="carousel-item">
-      <img src="../../source/bank.jpg" class="d-block w-100" alt="...">
+    <div class="carousel-item" data-bs-interval="3000">
+      <a href="{% url 'exchange:exchange' %}">
+      <img src={% static 'exchange.jpg' %} class="d-block w-100" style="height: 500px; object-fit: cover;" alt="...">
+      </a>
+      <div class="carousel-caption d-none d-md-block">
+        <h3>환율 계산기</h3>
+        <h5>지금 세계의 다양한 통화를 이용해 환율을 계산해보세요</h5>
+      </div>
     </div>
-    <div class="carousel-item">
-      <img src="../../source/bank.jpg" class="d-block w-100" alt="...">
+    <div class="carousel-item" data-bs-interval="3000">
+      <a href="{% url 'bank:searchbank' %}">
+      <img src={% static 'bank.jpg' %} class="d-block w-100" style="height: 500px; object-fit: cover;" alt="...">
+      </a>
+      <div class="carousel-caption d-none d-md-block">
+        <h3>주변 은행 찾기</h3>
+        <h5>지금 당신의 주변에 있는 은행을 검색해보세요.</h5>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="3000">
+      <a href="{% url 'boards:index' %}">
+      <img src={% static 'community.jpg' %} class="d-block w-100" style="height: 500px; object-fit: cover;" alt="...">
+      </a>
+      <div class="carousel-caption d-none d-md-block">
+        <h3>자유게시판</h3>
+        <h5>다양한 사람과 자신의 의견을 나눠보세요.</h5>
+      </div>
     </div>
   </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 
-
-  <h1>금융 상품 비교 애플리케이션</h1>
 {% endblock content %}
