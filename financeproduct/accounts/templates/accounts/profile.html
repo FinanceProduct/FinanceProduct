@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ person.username }}님의 프로필 페이지</h1>
+<div>
+    <p>회원번호: {{ person.id }}</p>
+    <p>유저이름: {{ person.username }}</p>
+    <p>가입날짜: {{ person.date_joined }}</p>
+</div>
+<div>팔로잉: {{ person.followings.count }} / 팔로워: {{ person.followers.count }}</div>
+<div>
+    <form action="{% url 'accounts:follow' person.pk %}" method="POST">
+        {% csrf_token %}
+        {% if request.user in person.followers.all %}
+        <button type="submit" class="btn btn-danger">팔로우 취소</button>
+        {% else %}
+        <button type="submit" class="btn btn-success">팔로우</button>
+        {% endif %}
+    </form>
+</div>
+<hr>
+<div>
+    <h1>{{ person.username }}의 글</h1>
+    {% for board in person.boards.all %}
+    <div>
+        <p>글번호: {{ board.id }}</p>
+        <p>글제목: <a href="{% url 'boards:detail' board.id %}">{{ board.title }}</a></p>
+    </div>
+    {% endfor %}
+</div>
+<hr>
+<div>
+    <h1>{{ person.username }}의 댓글</h1>
+    {% for comment in person.comments.all %}
+    <div>
+        <p>게시글: <a href="{% url 'boards:detail' comment.board.id %}">{{ comment.board.title }}</a></p>
+        <p>댓글 내용: {{ comment.content }}</p>
+    </div>
+    {% endfor %}
+</div>
+<hr>
+<div>
+    <h1>팔로워</h1>
+    {% for follower in followers %}
+    
+    {% endfor %}
+</div>
+{% endblock content %}
+
