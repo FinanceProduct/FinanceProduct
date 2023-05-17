@@ -7,6 +7,10 @@ import requests
 
 from .models import DepositOptions, DepositProducts
 from .serializers import DepositOptionsSerializer, DepositProductsSerializer
+
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
+
 # Create your views here.
 
 BASE_URL = 'http://finlife.fss.or.kr/finlifeapi/'
@@ -23,10 +27,11 @@ BASE_URL = 'http://finlife.fss.or.kr/finlifeapi/'
 #     return JsonResponse({ 'response': response })
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def save_deposit_products(request):
     URL = BASE_URL + 'depositProductsSearch.json'
     params = {
-        'auth': settings.API_KEY,
+        'auth': settings.PRODUCTS_API_KEY,
         'topFinGrpNo': '020000',
         'pageNo': 1,
     }

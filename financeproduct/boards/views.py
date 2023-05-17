@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404, get_list_or_40
 from .models import Board, Comment
 from .forms import BoardForm, CommentForm
 from django.views.decorators.http import require_http_methods
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 @require_http_methods(["GET"])
