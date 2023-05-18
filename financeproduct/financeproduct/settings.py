@@ -86,6 +86,10 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ],
 
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    ],
     # spectacular Settings
     # 'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 
@@ -96,6 +100,10 @@ REST_FRAMEWORK = {
 #     'VERSION': '1.0.0',
 #     'SERVE_INCLUDE_SCHEMA': False,
 #     # OTHER SETTINGS
+}
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'accounts.serializers.CustomUserDetailsSerializer',
 }
 
 MIDDLEWARE = [
@@ -195,3 +203,12 @@ environ.Env.read_env()
 KAKAO_JAVASCRIPT_KEY = env('KAKAO_JAVASCRIPT_KEY')
 EXCHANGE_API_KEY = env('EXCHANGE_API_KEY')
 PRODUCTS_API_KEY = env('PRODUCTS_API_KEY')
+
+REST_USE_JWT = True
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+}
